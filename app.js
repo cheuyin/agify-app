@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
+const axios = require("axios");
 const app = express();
 const port = 3000;
 
@@ -24,10 +24,13 @@ app.listen(port, () => {
 function getAPIData(query) {
   const name = query.name;
   const countryCode = query.country_code;
-  const reqURL = `https://api.agify.io?name=${name}&country_id=${countryCode}`;
-  request(reqURL, (error, response, body) => {
-    console.log(body);
-  })
+  const reqURL = `https://api.agify.io?name=${name}` +  
+  ((countryCode === "all") ? "" : `&country_id=${countryCode}`);
+  axios
+    .get(reqURL)
+    .then(response => {
+      console.log(response);
+    })
 }
 
 function displayData(apiData) {
