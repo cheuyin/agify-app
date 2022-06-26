@@ -12,3 +12,70 @@
   --orange: #f2cc8f;
 }
 
+body {
+  background-color: var(--off-white);
+}
+  
+input {
+  padding: 10px;
+}
+
+.container {
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  width: min-content;
+  color: var(--blue);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr min-content max-content;
+  margin-bottom: 20px;
+}
+
+.output {
+  height: 40px;
+}
+
+
+
+
+/**
+ * Button Styles
+ */
+.button {
+	display: inline-block;
+  margin: 0;
+  padding: 5px 10px;
+	border: 0;
+	background-color: var(--orange);
+	color: var(--blue);
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.button:hover {
+	opacity: 0.85;
+}
+
+.button:active {
+	box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button:focus {
+	outline: thin dotted #444;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
