@@ -1,12 +1,12 @@
 {
   "name": "agify-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Web app for agify.io",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "cheuyin",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1"
