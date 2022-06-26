@@ -9,5 +9,25 @@
 </head>
 <body>
   <h1>Agify App</h1>
+
+  <form action="/" method="post">
+      <input type="text" id="name" name= "name">
+      <select name="country_code" id="country_code">
+        <option value="None">All</option>
+        <option value="FR">France</option>
+        <option value="IT">Italy</option>
+        <option value="ES">Spain</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="JP">Japan</option>
+        <option value="GR">Greece</option>      
+      </select>
+      <button>Guess Age</button>
+  </form>
+
+  <div class="output">
+    <h2 id="age_guess">55</h2>
+    <p id="count">There are <span>28</span> data points for this name</p>
+  </div>
 </body>
 </html>
