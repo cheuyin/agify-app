@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const request = require("request");
 const app = express();
 const port = 3000;
 
@@ -11,10 +12,23 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-  console.log(req.body);
+  // getAPIData(req.body)
+  //   .then(data => displayData(data));
+  getAPIData(req.body);
 })
 
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });
 
+function getAPIData(query) {
+  const name = query.name;
+  const countryCode = query.country_code;
+  const reqURL = `https://api.agify.io?name=${name}&country_id=${countryCode}`;
+  request(reqURL, (error, response, body) => {
+    console.log(body);
+  })
+}
+
+function displayData(apiData) {
+}
