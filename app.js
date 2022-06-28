@@ -5,6 +5,7 @@ const axios = require("axios");
 const app = express();
 const port = 3000;
 
+let nameQuery = "";
 let ageGuess = "";
 let numOfDataPoints = "";
 
@@ -14,7 +15,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index", {ageGuess, numOfDataPoints});
+  res.render("index", {nameQuery, ageGuess, numOfDataPoints});
 })
 
 app.post("/", (req, res) => {
@@ -40,6 +41,7 @@ function getAPIData(query) {
 }
 
 function displayData(apiData) {
+  nameQuery = apiData.data.name;
   ageGuess = apiData.data.age;
   numOfDataPoints = apiData.data.count
 }
