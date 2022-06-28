@@ -5,19 +5,23 @@ const axios = require("axios");
 const app = express();
 const port = 3000;
 
+let ageGuess = "";
+let numOfDataPoints = "";
+
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {ageGuess, numOfDataPoints});
 })
 
 app.post("/", (req, res) => {
   getAPIData(req.body)
-    .then(data => displayData(data));
-})
+    .then(data => displayData(data))
+    .then(completion => res.redirect("/"));
+  })
 
 app.listen(port, () => {
   console.log("Server running on port " + port);
@@ -36,9 +40,8 @@ function getAPIData(query) {
 }
 
 function displayData(apiData) {
-  if (apiData.statusCode !== "200") {
-    showErrorPage(apiData);
-  }
+  ageGuess = apiData.data.age;
+  numOfDataPoints = apiData.data.count
 }
 
 
@@ -46,5 +49,4 @@ function showErrorPage(apiData) {
   console.log("Error!");
 }
 
-// TODO: ENABLE WRITING CONTENT TO HTML VIA JS
 
