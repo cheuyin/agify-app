@@ -15,6 +15,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
+  resetDataValues();
   renderMainPage(res);
 })
 
@@ -59,4 +60,9 @@ function showErrorPage(res, errorCode, errorMessage) {
   res.render("failure", {errorCode, errorMessage});
 }
 
+function resetDataValues() {
+  nameQuery = "";
+  ageGuess = "";
+  numOfDataPoints = "";
+}
 
