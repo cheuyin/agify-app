@@ -19,18 +19,21 @@ app.get("/", (req, res) => {
 })
 
 app.post("/", (req, res) => {
-  getAPIData(req.body)
-    .then(data => displayData(data))
-    .then(completion => res.redirect("/"));
+  const formData = req.body;
+  getAPIData(formData)
+    .then(data => {
+      displayData(data);
+      res.redirect("/");
+    });
   })
 
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });
 
-function getAPIData(query) {
-  const name = query.name;
-  const countryCode = query.country_code;
+function getAPIData(formData) {
+  const name = formData.name;
+  const countryCode = formData.country_code;
   const reqURL = `https://api.agify.io?name=${name}` +
     ((countryCode === "all") ? "" : `&country_id=${countryCode}`);
   return axios
