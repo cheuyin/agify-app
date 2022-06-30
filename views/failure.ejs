@@ -9,9 +9,11 @@
 </head>
 <body>
    <div class="container">
-      <h1>Error <span id="error-name">404</span>:</h1>
-      <p id="error-description">Not found</p>
-      <button id="back-button" class="button">Go Back</button>
+      <h1>Error <span id="error-name"><%= errorCode %></span></h1>
+      <p id="error-description"><%= errorMessage %></p>
+      <form action="/" method="get">
+         <button id="back-button" class="button" action="/" method="get">Go Back</button>
+      </form>
    </div>
 </body>
 </html>

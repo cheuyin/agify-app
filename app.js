@@ -15,7 +15,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("index", {nameQuery, ageGuess, numOfDataPoints});
+  renderMainPage(res);
 })
 
 app.post("/", (req, res) => {
@@ -23,8 +23,12 @@ app.post("/", (req, res) => {
   getAPIData(formData)
     .then(data => {
       displayData(data);
-      res.redirect("/");
-    });
+      renderMainPage(res);
+    })
+    .catch(error => {
+      const fullError = error.toJSON();
+      showErrorPage(res, fullError.status, fullError.message);
+    })
   })
 
 app.listen(port, () => {
@@ -37,10 +41,7 @@ function getAPIData(formData) {
   const reqURL = `https://api.agify.io?name=${name}` +
     ((countryCode === "all") ? "" : `&country_id=${countryCode}`);
   return axios
-    .get(reqURL)
-    .catch(error => {
-      console.log(error)
-    })
+    .get(reqURL);
 }
 
 function displayData(apiData) {
@@ -49,9 +50,13 @@ function displayData(apiData) {
   numOfDataPoints = apiData.data.count
 }
 
+function renderMainPage(res) {
+  res.render("index", {nameQuery, ageGuess, numOfDataPoints});
+}
 
-function showErrorPage(apiData) {
-  console.log("Error!");
+
+function showErrorPage(res, errorCode, errorMessage) {
+  res.render("failure", {errorCode, errorMessage});
 }
 
 
