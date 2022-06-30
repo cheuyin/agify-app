@@ -28,8 +28,16 @@
     </form>
   
     <div class="output">
-      <h2 id="age_guess">Age Guess: <%= ageGuess %></h2>
-      <p id="count"> # of Data Points: <%= numOfDataPoints %></p>
+      <h2 id="age_guess">
+        <% if (ageGuess !== "") { %>
+          Age Guess: <%= ageGuess %>
+        <% } %>
+      </h2>
+      <p id="count">
+        <% if (numOfDataPoints !== "") { %>
+          # of Data Points: <%= numOfDataPoints %>
+        <% } %>
+        </p>
     </div>
   </div>
 </body>
